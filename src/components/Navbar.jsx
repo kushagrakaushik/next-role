@@ -12,7 +12,7 @@ export default function Navbar() {
         {!user ? (
           <>
             <Link to="/login">Login</Link>
-            <Link className='' to="/signup">Signup</Link>
+            <Link to="/signup">Signup</Link>
           </>
         ) : (
           <>
