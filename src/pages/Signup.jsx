@@ -16,7 +16,6 @@ export default function Signup() {
 
   return (
     <>
-      <Navbar />
       <div className='flex items-center justify-center w-full h-screen'>
         <SignupForm defaultMode="signup" />
       </div>
