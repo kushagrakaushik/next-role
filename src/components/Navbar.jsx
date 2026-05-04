@@ -1,18 +1,28 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
+import { LayoutDashboard, Briefcase, Map, BarChart3, User, Settings } from "lucide-react";
 
 export default function Navbar() {
   const auth = getAuth()
   const [user, setUser] = useState(auth.currentUser)
+  const location = useLocation()
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser)
     })
-
     return unsubscribe
   }, [auth])
+
+  const navItems = [
+    { name: "Dashboard", path: "/dashboard", icon: LayoutDashboard },
+    { name: "Roles", path: "/roles", icon: Briefcase },
+    { name: "My Path", path: "/my-path", icon: Map },
+    { name: "Visualizer", path: "/visualizer", icon: BarChart3 },
+    { name: "Profile", path: "/profile", icon: User },
+    { name: "Settings", path: "/settings", icon: Settings },
+  ];
 
   return (
     <>
@@ -33,36 +43,35 @@ export default function Navbar() {
         </nav>
       ) : (
         <aside className="fixed left-0 top-0 z-50 flex h-screen w-64 flex-col border-r border-white/10 bg-[#070b14]/95 px-4 py-5 backdrop-blur-xl">
+          
           <Link to="/dashboard" className="mb-8 text-2xl font-semibold tracking-tight text-violet-400">
             NextRole
           </Link>
 
           <div className="flex flex-1 flex-col gap-2 text-sm font-medium text-zinc-300">
-            <Link to="/dashboard" className="flex items-center gap-3 rounded-xl bg-violet-500/20 px-4 py-3 text-white">
-              <span className="grid h-6 w-6 place-items-center rounded-lg bg-violet-500 text-xs font-semibold text-white">D</span>
-              Dashboard
-            </Link>
-            <Link to="/roles" className="flex items-center gap-3 rounded-xl px-4 py-3 transition hover:bg-white/5 hover:text-white">
-              <span className="grid h-6 w-6 place-items-center rounded-lg bg-white/5 text-xs">R</span>
-              Roles
-            </Link>
-            <Link to="/my-path" className="flex items-center gap-3 rounded-xl px-4 py-3 transition hover:bg-white/5 hover:text-white">
-              <span className="grid h-6 w-6 place-items-center rounded-lg bg-white/5 text-xs">P</span>
-              My Path
-            </Link>
-            <Link to="/visualizer" className="flex items-center gap-3 rounded-xl px-4 py-3 transition hover:bg-white/5 hover:text-white">
-              <span className="grid h-6 w-6 place-items-center rounded-lg bg-white/5 text-xs">V</span>
-              Visualizer
-            </Link>
-            <Link to="/profile" className="flex items-center gap-3 rounded-xl px-4 py-3 transition hover:bg-white/5 hover:text-white">
-              <span className="grid h-6 w-6 place-items-center rounded-lg bg-white/5 text-xs">P</span>
-              Profile
-            </Link>
-            <Link to="/settings" className="flex items-center gap-3 rounded-xl px-4 py-3 transition hover:bg-white/5 hover:text-white">
-              <span className="grid h-6 w-6 place-items-center rounded-lg bg-white/5 text-xs">S</span>
-              Settings
-            </Link>
+            {navItems.map((item) => {
+              const isActive = location.pathname === item.path;
+              const Icon = item.icon;
+
+              return (
+                <Link key={item.path} to={item.path}>
+                  <div
+                    className={`flex items-center gap-3 rounded-xl px-4 py-3 transition-all duration-200
+                    ${isActive 
+                      ? "bg-violet-500/20 text-white" 
+                      : "hover:bg-white/5 hover:text-white"
+                    }`}
+                  >
+                    <span className={`grid h-6 w-6 place-items-center rounded-lg transition ${isActive ? "hover:bg-violet-500":"bg-white/5"}`}>
+                      <Icon className="h-5 w-5" />
+                    </span>
+                    {item.name}
+                  </div>
+                </Link>
+              );
+            })}
           </div>
+
         </aside>
       )}
     </>
