@@ -1,7 +1,47 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { auth } from '../lib/firebase'
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth"; 
 
 export default function SignupForm({defaultMode}) {
+  const navigate = useNavigate();
   const [mode, setMode] = useState(defaultMode);
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError("");
+    setLoading(true);
+
+    if (mode === "signup" && password !== confirmPassword) {
+        setError("Passwords do not match!");
+        setLoading(false);
+        return;
+    }
+
+    if (password.length < 6) {
+        setError("Password must be at least 6 characters");
+        setLoading(false);
+        return;
+    }
+
+    try {
+        if (mode === "signup") {
+            await createUserWithEmailAndPassword(auth, email, password);
+        } else {
+            await signInWithEmailAndPassword(auth, email, password);
+        }
+        navigate("/dashboard");
+    } catch (err) {
+        setError(err.message);
+    } finally {
+        setLoading(false);
+    }
+    };
 
   return (
     <div className="w-full max-w-md bg-zinc-900 border border-zinc-800 rounded-2xl p-6 space-y-6 shadow-[0_0_40px_rgba(139,92,246,0.15)]">
@@ -44,7 +84,9 @@ export default function SignupForm({defaultMode}) {
       </div>
 
       {/* Form */}
-      <form className="space-y-4">
+      <form className="space-y-4" onSubmit={handleSubmit}>
+
+        {error && <div className="p-2 bg-red-500/20 border border-red-500 text-red-300 text-sm rounded">{error}</div>}
 
         {mode === "signup" && (
           <input
@@ -57,20 +99,32 @@ export default function SignupForm({defaultMode}) {
         <input
           type="email"
           placeholder="Email"
-          className="w-full px-4 py-3 bg-zinc-800 border border-zinc-700 rounded-lg text-white placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-violet-500"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+          disabled={loading}
+          className="w-full px-4 py-3 bg-zinc-800 border border-zinc-700 rounded-lg text-white placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-violet-500 disabled:opacity-50"
         />
 
         <input
           type="password"
           placeholder="Password"
-          className="w-full px-4 py-3 bg-zinc-800 border border-zinc-700 rounded-lg text-white placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-violet-500"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+          disabled={loading}
+          className="w-full px-4 py-3 bg-zinc-800 border border-zinc-700 rounded-lg text-white placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-violet-500 disabled:opacity-50"
         />
 
         {mode === "signup" && (
           <input
             type="password"
             placeholder="Confirm Password"
-            className="w-full px-4 py-3 bg-zinc-800 border border-zinc-700 rounded-lg text-white placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-violet-500"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            required
+            disabled={loading}
+            className="w-full px-4 py-3 bg-zinc-800 border border-zinc-700 rounded-lg text-white placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-violet-500 disabled:opacity-50"
           />
         )}
 
@@ -87,9 +141,10 @@ export default function SignupForm({defaultMode}) {
         {/* Button */}
         <button
           type="submit"
-          className="w-full py-3 rounded-lg font-medium text-white bg-linear-to-r from-violet-500 to-indigo-500 hover:from-violet-600 hover:to-indigo-600 transition"
+          disabled={loading}
+          className="w-full py-3 rounded-lg font-medium text-white bg-gradient-to-r from-violet-500 to-indigo-500 hover:from-violet-600 hover:to-indigo-600 transition disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          {mode === "login" ? "Login" : "Sign Up"}
+          {loading ? "Please wait..." : mode === "login" ? "Login" : "Sign Up"}
         </button>
       </form>
 
