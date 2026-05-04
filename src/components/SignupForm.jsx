@@ -104,7 +104,7 @@ export default function SignupForm({defaultMode}) {
       <div className="flex gap-3">
         <button className="flex-1 bg-zinc-800 hover:bg-zinc-700 transition p-3 rounded-lg flex items-center justify-center">
           <img
-            src="https://upload.wikimedia.org/wikipedia/commons/4/4a/Logo_2013_Google.png"
+            src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Google_Favicon_2025.svg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original"
             className="h-5"
           />
         </button>
