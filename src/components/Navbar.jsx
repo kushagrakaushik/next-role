@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { LayoutDashboard, Briefcase, Map, BarChart3, User, Settings } from "lucide-react";
+import { LayoutDashboard, Briefcase, Map, BarChart3, User, Settings,LayersPlus } from "lucide-react";
 
 export default function Navbar({user}) {
   const location = useLocation()
@@ -15,6 +15,7 @@ export default function Navbar({user}) {
     { name: "Dashboard", path: "/dashboard", icon: LayoutDashboard },
     { name: "Roles", path: "/roles", icon: Briefcase },
     { name: "My Path", path: "/my-path", icon: Map },
+    { name: "Skills", path: "/skills",icon: LayersPlus },
     { name: "Visualizer", path: "/visualizer", icon: BarChart3 },
     { name: "Profile", path: "/profile", icon: User },
     { name: "Settings", path: "/settings", icon: Settings },

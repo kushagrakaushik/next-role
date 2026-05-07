@@ -31,186 +31,103 @@ export const stats = [
   },
 ];
 
-export const roleCategories = [
-  {
-    type: "All",
-    roles: [
-      {
-        title: "Frontend Developer",
-        category: "Development",
-        match: 92,
-        description: "Build modern and responsive web interfaces using React and frontend technologies.",
-        skills: ["React", "Tailwind", "JavaScript"],
-      },
-      {
-        title: "Backend Developer",
-        category: "Development",
-        match: 85,
-        description: "Develop scalable APIs, databases, and server-side systems for web applications.",
-        skills: ["Node.js", "Express", "MongoDB"],
-      },
-      {
-        title: "Full Stack Developer",
-        category: "Development",
-        match: 87,
-        description: "Work across both frontend and backend to create complete full stack applications.",
-        skills: ["React", "Node.js", "MongoDB"],
-      },
-      {
-        title: "UI/UX Designer",
-        category: "Design",
-        match: 76,
-        description: "Design intuitive user experiences and visually engaging digital interfaces.",
-        skills: ["Figma", "Wireframing", "Prototyping"],
-      },
-      {
-        title: "UI Engineer",
-        category: "Design",
-        match: 81,
-        description: "Bridge design and development by building polished and interactive interfaces.",
-        skills: ["Animations", "CSS", "React"],
-      },
-      {
-        title: "Data Analyst",
-        category: "Data",
-        match: 79,
-        description: "Analyze datasets and generate insights to support business decisions.",
-        skills: ["SQL", "Power BI", "Python"],
-      },
-      {
-        title: "Data Scientist",
-        category: "Data",
-        match: 73,
-        description: "Use machine learning and statistics to solve complex data-driven problems.",
-        skills: ["Python", "ML", "Pandas"],
-      },
-      {
-        title: "AI Product Engineer",
-        category: "Data",
-        match: 74,
-        description: "Build AI-powered applications and integrate modern LLM technologies into products.",
-        skills: ["Python", "LLMs", "APIs"],
-      },
-      {
-        title: "DevOps Engineer",
-        category: "Development",
-        match: 78,
-        description: "Manage deployment pipelines, cloud infrastructure, and system reliability.",
-        skills: ["Docker", "AWS", "CI/CD"],
-      },
-    ],
-  },
 
-  {
-    type: "Development",
-    roles: [
-      {
-        title: "Frontend Developer",
-        category: "Development",
-        match: 92,
-        description: "Build modern and responsive web interfaces using React and frontend technologies.",
-        skills: ["React", "Tailwind", "JavaScript"],
-      },
-      {
-        title: "Backend Developer",
-        category: "Development",
-        match: 85,
-        description: "Develop scalable APIs, databases, and server-side systems for web applications.",
-        skills: ["Node.js", "Express", "MongoDB"],
-      },
-      {
-        title: "Full Stack Developer",
-        category: "Development",
-        match: 87,
-        description: "Work across both frontend and backend to create complete full stack applications.",
-        skills: ["React", "Node.js", "MongoDB"],
-      },
-      {
-        title: "DevOps Engineer",
-        category: "Development",
-        match: 78,
-        description: "Manage deployment pipelines, cloud infrastructure, and system reliability.",
-        skills: ["Docker", "AWS", "CI/CD"],
-      },
-    ],
-  },
-
-  {
-    type: "Design",
-    roles: [
-      {
-        title: "UI/UX Designer",
-        category: "Design",
-        match: 76,
-        description: "Design intuitive user experiences and visually engaging digital interfaces.",
-        skills: ["Figma", "Wireframing", "Prototyping"],
-      },
-      {
-        title: "UI Engineer",
-        category: "Design",
-        match: 81,
-        description: "Bridge design and development by building polished and interactive interfaces.",
-        skills: ["Animations", "CSS", "React"],
-      },
-    ],
-  },
-
-  {
-    type: "Data",
-    roles: [
-      {
-        title: "Data Analyst",
-        category: "Data",
-        match: 79,
-        description: "Analyze datasets and generate insights to support business decisions.",
-        skills: ["SQL", "Power BI", "Python"],
-      },
-      {
-        title: "Data Scientist",
-        category: "Data",
-        match: 73,
-        description: "Use machine learning and statistics to solve complex data-driven problems.",
-        skills: ["Python", "ML", "Pandas"],
-      },
-      {
-        title: "AI Product Engineer",
-        category: "Data",
-        match: 74,
-        description: "Build AI-powered applications and integrate modern LLM technologies into products.",
-        skills: ["Python", "LLMs", "APIs"],
-      },
-    ],
-  },
+export const category = [
+  "All",
+  "Development",
+  "Design",
+  "Data"
 ];
 
 export const marketRoles = [
   {
     title: "Frontend Developer",
+    category: "Development",
     match: 92,
     salary: "₹12L - ₹18L",
     growth: "+18%",
+    description: "Build modern and responsive web interfaces using React and frontend technologies.",
     skills: ["React", "Tailwind", "JavaScript"],
   },
+
+  {
+    title: "Backend Developer",
+    category: "Development",
+    match: 85,
+    salary: "₹15L - ₹24L",
+    growth: "+21%",
+    description: "Develop scalable APIs, databases, and server-side systems for web applications.",
+    skills: ["Node.js", "Express", "MongoDB"],
+  },
+
   {
     title: "Full Stack Developer",
+    category: "Development",
     match: 87,
     salary: "₹18L - ₹28L",
     growth: "+25%",
-    skills: ["Node.js", "MongoDB", "React"],
+    description: "Work across both frontend and backend to create complete full stack applications.",
+    skills: ["React", "Node.js", "MongoDB"],
   },
+
   {
-    title: "AI Product Engineer",
-    match: 74,
-    salary: "₹24L - ₹40L",
-    growth: "+41%",
-    skills: ["Python", "LLMs", "APIs"],
+    title: "DevOps Engineer",
+    category: "Development",
+    match: 78,
+    salary: "₹16L - ₹26L",
+    growth: "+23%",
+    description: "Manage deployment pipelines, cloud infrastructure, and system reliability.",
+    skills: ["Docker", "AWS", "CI/CD"],
   },
+
+  {
+    title: "UI/UX Designer",
+    category: "Design",
+    match: 76,
+    salary: "₹10L - ₹16L",
+    growth: "+14%",
+    description: "Design intuitive user experiences and visually engaging digital interfaces.",
+    skills: ["Figma", "Wireframing", "Prototyping"],
+  },
+
   {
     title: "UI Engineer",
+    category: "Design",
     match: 81,
     salary: "₹14L - ₹22L",
     growth: "+16%",
+    description: "Bridge design and development by building polished and interactive interfaces.",
     skills: ["Animations", "CSS", "React"],
+  },
+
+  {
+    title: "Data Analyst",
+    category: "Data",
+    match: 79,
+    salary: "₹11L - ₹18L",
+    growth: "+20%",
+    description: "Analyze datasets and generate insights to support business decisions.",
+    skills: ["SQL", "Power BI", "Python"],
+  },
+
+  {
+    title: "Data Scientist",
+    category: "Data",
+    match: 73,
+    salary: "₹20L - ₹35L",
+    growth: "+34%",
+    description: "Use machine learning and statistics to solve complex data-driven problems.",
+    skills: ["Python", "Machine Learning", "Pandas"],
+  },
+
+  {
+    title: "AI Product Engineer",
+    category: "Data",
+    match: 74,
+    salary: "₹24L - ₹40L",
+    growth: "+41%",
+    description: "Build AI-powered applications and integrate modern LLM technologies into products.",
+    skills: ["Python", "LLMs", "APIs"],
   },
 ];
 
