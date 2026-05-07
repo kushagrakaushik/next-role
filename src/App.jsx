@@ -9,20 +9,29 @@ import Navbar from './components/Navbar'
 import { getAuth } from 'firebase/auth'
 import Skills from './pages/Skills'
 import Profile from './pages/Profile'
+import { getJobsData } from './services/jSearch'
 
 function App() {
   const [user, setUser] = useState(null)
-  const auth = getAuth()
-  const location = useLocation()
+  const [groupedJobs, setGroupedJobs] = useState(null)
+  const [jobsLoading, setJobsLoading] = useState(true)
 
-  const sidebarRoutes = ['/dashboard', '/roles', '/my-path', '/visualizer', '/skills', '/profile', '/settings']
-  const showSidebarLayout = Boolean(user) && sidebarRoutes.some((path) => location.pathname.startsWith(path))
+  const auth = getAuth()
+
+  const showSidebarLayout = Boolean(user)
+
+  // Single fetch point — module-level cache prevents duplicate calls
+  useEffect(() => {
+    getJobsData().then((result) => {
+      setGroupedJobs(result.groupedJobs)
+      setJobsLoading(false)
+    })
+  }, [])
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((currentUser) => {
       setUser(currentUser)
     })
-
     return () => unsubscribe()
   }, [auth])
 
@@ -38,6 +47,8 @@ function App() {
           <Route path="/roles" element={<Roles />} />
           <Route path="/skills" element={<Skills />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/dashboard" element={<Dashboard user={user} groupedJobs={groupedJobs} jobsLoading={jobsLoading} />} />
+          <Route path="/roles" element={<Roles groupedJobs={groupedJobs} jobsLoading={jobsLoading} />} />
         </Routes>
       </main>
     </div>
