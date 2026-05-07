@@ -109,6 +109,7 @@ function SkeletonCard() {
 export default function Dashboard({ user, groupedJobs, jobsLoading }) {
   const navigate = useNavigate()
   const auth = getAuth()
+  console.log(groupedJobs)
 
   useEffect(() => {
     if (!user) navigate('/login')

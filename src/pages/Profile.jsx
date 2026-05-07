@@ -2,6 +2,7 @@ import React from "react";
 import { PencilLine } from 'lucide-react';
 
 export default function Profile(){
+    const savedSkills=JSON.parse(localStorage.getItem("Skills")) || []
     return(
         // main page container
         <div className="p-8 text-white min-h-screen">
@@ -56,7 +57,7 @@ export default function Profile(){
                             Recent Activity
                         </h3>
                         <div className="flex flex-col gap-3 text-sm text-gray-300">
-                            <p>• Added new skill TypeScript</p>
+                            <p className="">• Added new skill {savedSkills[savedSkills.length - 1]}</p>
                             <p>• Explored role Backend Developer</p>
                             <p>• Saved path Frontend Developer</p>
                         </div>
@@ -66,10 +67,10 @@ export default function Profile(){
                 <div className="col-span-2 flex flex-col gap-6">
                     {/* top stats cards */}
                     <div className="grid grid-cols-3 gap-4">
-                        {/* skills card */}
+                        {/* done with skills card*/}
                         <div className="bg-white/5 rounded-2xl p-6 border border-white/10">
                             <h2 className="text-4xl font-bold text-purple-400">
-                                12
+                                {savedSkills.length}
                             </h2>
                             <p className="text-gray-400 mt-2">
                                 Skills Added
