@@ -7,13 +7,14 @@ import Dashboard from './pages/Dashboard'
 import Roles from './pages/Roles'
 import Navbar from './components/Navbar'
 import { getAuth } from 'firebase/auth'
+import Skills from './pages/Skills'
 
 function App() {
   const [user, setUser] = useState(null)
   const auth = getAuth()
   const location = useLocation()
 
-  const sidebarRoutes = ['/dashboard', '/roles', '/my-path', '/visualizer', '/profile', '/settings']
+  const sidebarRoutes = ['/dashboard', '/roles', '/my-path', '/visualizer', '/skills', '/profile', '/settings']
   const showSidebarLayout = Boolean(user) && sidebarRoutes.some((path) => location.pathname.startsWith(path))
 
   useEffect(() => {
@@ -34,6 +35,7 @@ function App() {
           <Route path="/login" element={<Login user={user} />} />
           <Route path="/dashboard" element={<Dashboard user={user} />} />
           <Route path="/roles" element={<Roles />} />
+          <Route path="/skills" element={<Skills />} />
         </Routes>
       </main>
     </div>
