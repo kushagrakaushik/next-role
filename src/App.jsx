@@ -43,8 +43,6 @@ function App() {
           <Route path="/" element={<Landing user={user} />} />
           <Route path="/signup" element={<Signup user={user} />} />
           <Route path="/login" element={<Login user={user} />} />
-          <Route path="/dashboard" element={<Dashboard user={user} />} />
-          <Route path="/roles" element={<Roles />} />
           <Route path="/skills" element={<Skills />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/dashboard" element={<Dashboard user={user} groupedJobs={groupedJobs} jobsLoading={jobsLoading} />} />
