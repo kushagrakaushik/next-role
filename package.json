@@ -12,6 +12,7 @@
   "dependencies": {
     "@supabase/supabase-js": "^2.105.3",
     "@tailwindcss/vite": "^4.2.4",
+    "axios": "^1.16.0",
     "firebase": "^12.12.1",
     "flowbite": "^4.0.1",
     "flowbite-react": "^0.12.17",
