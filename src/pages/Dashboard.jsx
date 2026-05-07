@@ -6,6 +6,7 @@ import { useEffect } from 'react'
 import { stats } from '../data/mockData'
 import StatCard from '../components/StatCard'
 import heroImage from '../assets/HeroImage.png'
+import Topbar from "../components/Topbar"
 
 const icons = {
   "Skills Added":     { icon: BadgeCheck,     iconColor: "bg-violet-500/10",  textColor: "text-violet-400" },
@@ -127,6 +128,7 @@ export default function Dashboard({ user, groupedJobs, jobsLoading }) {
 
   return (
     <div className='flex mx-20 mt-10 flex-col gap-8'>
+        <Topbar/>
       {/* Hero banner */}
       <div className='border border-zinc-800 w-fit flex flex-row items-center justify-between rounded-3xl bg-linear-to-r from-violet-500/10 via-[#111117] to-[#111117] pl-10 backdrop-blur'>
         <div className='flex flex-col gap-3'>
