@@ -4,10 +4,6 @@ import { getAuth, signOut } from 'firebase/auth'
 import { useNavigate } from "react-router-dom";
 
 export default function Profile({ user }){
-    const navigate = useNavigate()
-    if (!user) {
-        navigate('/login')
-    }
     const savedSkills=JSON.parse(localStorage.getItem("Skills")) || []
 
 
