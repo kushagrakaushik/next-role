@@ -5,9 +5,9 @@ export default function Profile(){
     const savedSkills=JSON.parse(localStorage.getItem("Skills")) || []
     return(
         // main page container
-        <div className="p-8 text-white min-h-screen">
+        <div className="p-4 md:p-8 text-white min-h-screen">
             {/* top heading section */}
-            <div className="flex justify-between items-center">
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                 {/* page title */}
                 <div className="text-3xl font-bold">
                     Profile Overview
@@ -21,7 +21,7 @@ export default function Profile(){
                 </div>
             </div>
             {/* profile + stats section */}
-            <div className="grid grid-cols-3 gap-6 mt-8">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-8">
                 {/* left profile card */}
                 <div className="col-span-1 bg-white/5 rounded-2xl p-6 border border-white/10">
                     {/* profile info */}
@@ -64,9 +64,9 @@ export default function Profile(){
                     </div>
                 </div>
                 {/* stats cards section */}
-                <div className="col-span-2 flex flex-col gap-6">
+                <div className="col-span-1 lg:col-span-2 flex flex-col gap-6">
                     {/* top stats cards */}
-                    <div className="grid grid-cols-3 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                         {/* done with skills card*/}
                         <div className="bg-white/5 rounded-2xl p-6 border border-white/10">
                             <h2 className="text-4xl font-bold text-purple-400">

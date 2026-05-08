@@ -127,20 +127,20 @@ export default function Dashboard({ user, groupedJobs, jobsLoading }) {
     : []
 
   return (
-    <div className='flex mx-20 mt-10 flex-col gap-8'>
+    <div className='flex mx-4 md:mx-10 lg:mx-20 mt-6 lg:mt-10 flex-col gap-8'>
         <Topbar/>
       {/* Hero banner */}
-      <div className='border border-zinc-800 w-fit flex flex-row items-center justify-between rounded-3xl bg-linear-to-r from-violet-500/10 via-[#111117] to-[#111117] pl-10 backdrop-blur'>
-        <div className='flex flex-col gap-3'>
-          <h1 className='text-4xl font-bold text-shadow-[0_0_0.5px_white] text-white'>What's your</h1>
-          <h1 className='text-4xl font-bold text-violet-500 text-shadow-[0_0_0.5px_white]'>Next Role?</h1>
-          <p className='text-lg mt-2'>Add your skills and let NextRole find the best career paths for you.</p>
+      <div className='border border-zinc-800 w-full flex flex-col md:flex-row items-center justify-between rounded-3xl bg-linear-to-r from-violet-500/10 via-[#111117] to-[#111117] p-6 md:pl-10 md:p-0 backdrop-blur overflow-hidden'>
+        <div className='flex flex-col gap-3 w-full md:w-1/2'>
+          <h1 className='text-3xl md:text-4xl font-bold text-shadow-[0_0_0.5px_white] text-white'>What's your</h1>
+          <h1 className='text-3xl md:text-4xl font-bold text-violet-500 text-shadow-[0_0_0.5px_white]'>Next Role?</h1>
+          <p className='text-base md:text-lg mt-2'>Add your skills and let NextRole find the best career paths for you.</p>
         </div>
-        <img src={heroImage} alt="Hero" className='w-1/2 h-auto opacity-50 mix-blend-lighten' />
+        <img src={heroImage} alt="Hero" className='w-full max-w-50 md:max-w-none md:w-1/2 h-auto opacity-50 mix-blend-lighten mt-6 md:mt-0 self-end md:self-auto' />
       </div>
 
       {/* Stat cards */}
-      <div className='w-full grid grid-cols-4 gap-5'>
+      <div className='w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5'>
         {stats.map((stat) => (
           <StatCard key={stat.title} stat={stat} tag={icons[stat.title]} />
         ))}
@@ -158,7 +158,7 @@ export default function Dashboard({ user, groupedJobs, jobsLoading }) {
           </button>
         </div>
 
-        <div className='w-full grid grid-cols-4 gap-5'>
+        <div className='w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5'>
           {jobsLoading
             ? Array.from({ length: 4 }).map((_, i) => <SkeletonCard key={i} />)
             : topJobs.length > 0

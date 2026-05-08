@@ -1,16 +1,19 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { LayoutDashboard, Briefcase, Map, BarChart3, User, Settings,LayersPlus } from "lucide-react";
+import { LayoutDashboard, Briefcase, Map, BarChart3, User, Settings, LayersPlus, Menu, X } from "lucide-react";
 
 export default function Navbar({user}) {
   const location = useLocation()
   const [side, setSide] = useState(Boolean(user))
+  const [isOpen, setIsOpen] = useState(false)
 
   useEffect(() => {
     setSide(user)
   }, [user]);
 
-
+  useEffect(() => {
+    setIsOpen(false)
+  }, [location]);
   const navItems = [
     { name: "Dashboard", path: "/dashboard", icon: LayoutDashboard },
     { name: "Roles", path: "/roles", icon: Briefcase },
@@ -18,7 +21,6 @@ export default function Navbar({user}) {
     { name: "Skills", path: "/skills",icon: LayersPlus },
     { name: "Visualizer", path: "/visualizer", icon: BarChart3 },
     { name: "Profile", path: "/profile", icon: User },
-    { name: "Settings", path: "/settings", icon: Settings },
   ];
 
   return (
@@ -39,12 +41,31 @@ export default function Navbar({user}) {
           </div>
         </nav>
       ) : (
-        <aside className="h-screen w-64 shrink-0 border-r border-white/10 bg-[#070b14]/95 px-4 py-5 backdrop-blur-xl">
-          <div className='flex align-items-center justify-between mb-10 mt-5 mx-2'>
-          <Link to="/dashboard" className="text-4xl font-semibold tracking-tight text-violet-400">
-            NextRole
-          </Link>
+        <>
+          {/* Mobile Header */}
+          <div className="md:hidden flex items-center justify-between p-4 border-b border-white/10 bg-[#070b14] shrink-0 sticky top-0 z-40">
+            <Link to="/dashboard" className="text-2xl font-semibold tracking-tight text-violet-400">
+              NextRole
+            </Link>
+            <button onClick={() => setIsOpen(true)} className="text-zinc-300 p-1">
+              <Menu className="h-6 w-6" />
+            </button>
           </div>
+
+          {/* Overlay */}
+          {isOpen && (
+            <div className="fixed inset-0 bg-black/60 z-40 md:hidden" onClick={() => setIsOpen(false)} />
+          )}
+
+          <aside className={`fixed inset-y-0 left-0 z-50 h-screen w-64 flex flex-col border-r border-white/10 bg-[#070b14] px-4 py-5 transition-transform duration-300 md:static md:translate-x-0 ${isOpen ? "translate-x-0" : "-translate-x-full"}`}>
+            <div className='flex items-center justify-between mb-10 mt-5 mx-2'>
+              <Link to="/dashboard" className="text-4xl font-semibold tracking-tight text-violet-400">
+                NextRole
+              </Link>
+              <button onClick={() => setIsOpen(false)} className="md:hidden text-zinc-300 p-1">
+                <X className="h-6 w-6" />
+              </button>
+            </div>
 
           <div className="flex flex-1 flex-col gap-2 text-sm font-medium text-zinc-300">
             {navItems.map((item) => {
@@ -71,6 +92,7 @@ export default function Navbar({user}) {
           </div>
 
         </aside>
+        </>
       )}
     </>
   )

@@ -28,14 +28,14 @@ export default function Skills() {
   };
 
   return (
-    <div className="p-8 text-white">
+    <div className="p-4 md:p-8 text-white min-h-screen">
       <div className="flex flex-col gap-2 mb-10">
         <h1 className="text-4xl font-bold">Your Skills</h1>
         <p className="text-zinc-400 text-lg">
           Add and manage your skills to get better recommendations.
         </p>
       </div>
-      <div className="flex items-center gap-4 mb-10">
+      <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 mb-10">
         <input
           type="text"
           placeholder="Add a Skill and press Enter..."
@@ -50,7 +50,7 @@ export default function Skills() {
           Add Skill
         </button>
       </div>
-      <div className="grid grid-cols-[2fr_1fr] gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-6">
         <div className="bg-white/5 border border-white/10 rounded-3xl p-6">
           <div className="flex items-center justify-between mb-6">
             <h1 className="text-2xl font-semibold">

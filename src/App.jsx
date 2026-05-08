@@ -9,6 +9,7 @@ import Navbar from './components/Navbar'
 import { getAuth } from 'firebase/auth'
 import Skills from './pages/Skills'
 import Profile from './pages/Profile'
+import Visualizer from './pages/Visualizer'
 import { getJobsData } from './services/jSearch'
 
 function App() {
@@ -23,7 +24,7 @@ function App() {
   // Single fetch point — module-level cache prevents duplicate calls
   useEffect(() => {
     getJobsData().then((result) => {
-      setGroupedJobs(result.groupedJobs) 
+      setGroupedJobs(result.groupedJobs)
       setJobsLoading(false)
     })
   }, [])
@@ -36,9 +37,9 @@ function App() {
   }, [auth])
 
   return (
-    <div className={showSidebarLayout ? 'flex min-h-screen' : ''}>
+    <div className={showSidebarLayout ? 'flex flex-col md:flex-row min-h-screen' : ''}>
       <Navbar user={user} />
-      <main className={showSidebarLayout ? 'flex-1 min-w-0' : ''}>
+      <main className={showSidebarLayout ? 'flex-1 min-w-0 w-full' : ''}>
         <Routes>
           <Route path="/" element={<Landing user={user} />} />
           <Route path="/signup" element={<Signup user={user} />} />
@@ -47,6 +48,7 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/dashboard" element={<Dashboard user={user} groupedJobs={groupedJobs} jobsLoading={jobsLoading} />} />
           <Route path="/roles" element={<Roles groupedJobs={groupedJobs} jobsLoading={jobsLoading} />} />
+          <Route path="/visualizer" element={<Visualizer />} />
         </Routes>
       </main>
     </div>

@@ -23,9 +23,9 @@ export default function Roles({ groupedJobs, jobsLoading }) {
   }, [jobs, query])
 
   return (
-    <div className="p-6 text-white min-h-screen">
+    <div className="p-4 md:p-6 text-white min-h-screen">
       {/* Top bar */}
-      <div className="flex items-center justify-between mb-8">
+      <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-8 gap-4">
         <div>
           <h1 className="text-3xl font-semibold mb-1">Explore Roles</h1>
           <p className="text-zinc-400 text-sm">
@@ -34,7 +34,7 @@ export default function Roles({ groupedJobs, jobsLoading }) {
               : `${groupedJobs?.All?.length ?? 0} live jobs across all categories`}
           </p>
         </div>
-        <div className="flex items-center bg-white/5 rounded-xl px-3 py-2 w-72 border border-white/10 focus-within:border-violet-500/40 transition">
+        <div className="flex items-center bg-white/5 rounded-xl px-3 py-2 w-full md:w-72 border border-white/10 focus-within:border-violet-500/40 transition">
           <Search className="h-4 w-4 text-zinc-400 mr-2 shrink-0" />
           <input
             type="text"
