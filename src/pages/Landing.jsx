@@ -30,12 +30,6 @@ export default function Landing({ user }) {
                   Get Started
                 </button>
               </Link>
-
-              <Link to="/roles">
-                <button className="bg-transparent border border-white/10 text-zinc-100 px-5 py-3 rounded-lg hover:bg-white/2 transition">
-                  Browse Roles
-                </button>
-              </Link>
             </div>
 
             <div className="mt-6 flex flex-wrap gap-4 justify-center md:justify-start text-sm text-zinc-400">
