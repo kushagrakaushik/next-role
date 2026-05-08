@@ -1,11 +1,17 @@
 import React, { useState, useMemo } from 'react'
 import { Search, MapPin, Building2, ExternalLink, Wifi, Loader2, Briefcase } from 'lucide-react'
+import { useNavigate } from 'react-router-dom'
 import JobCard from '../components/JobCard'
 import JobSkeleton from '../components/JobSkeleton'
 
 const TABS = ['All', 'Frontend', 'Backend', 'Fullstack', 'UI/UX', 'Other Tech']
 
-export default function Roles({ groupedJobs, jobsLoading }) {
+export default function Roles({ groupedJobs, jobsLoading, user }) {
+  const navigate = useNavigate()
+    if (!user) {
+        navigate('/login')
+    }
+
   const [activeTab, setActiveTab] = useState('All')
   const [query, setQuery] = useState('')
 

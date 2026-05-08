@@ -1,8 +1,16 @@
 import React from "react";
 import { PencilLine } from 'lucide-react';
+import { getAuth, signOut } from 'firebase/auth'
+import { useNavigate } from "react-router-dom";
 
-export default function Profile(){
+export default function Profile({ user }){
+    const navigate = useNavigate()
+    if (!user) {
+        navigate('/login')
+    }
     const savedSkills=JSON.parse(localStorage.getItem("Skills")) || []
+
+
     return(
         // main page container
         <div className="p-4 md:p-8 text-white min-h-screen">
@@ -61,6 +69,12 @@ export default function Profile(){
                             <p>• Explored role Backend Developer</p>
                             <p>• Saved path Frontend Developer</p>
                         </div>
+                    </div>
+
+                    <div>
+                        <button onClick={() => signOut(getAuth())} className="mt-8 w-full bg-purple-500 hover:bg-purple-600 text-white px-4 py-2 rounded-lg">
+                            Log Out
+                        </button>
                     </div>
                 </div>
                 {/* stats cards section */}

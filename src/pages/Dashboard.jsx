@@ -112,7 +112,7 @@ export default function Dashboard({ user, groupedJobs, jobsLoading }) {
 
   useEffect(() => {
     if (!user) navigate('/login')
-  }, [user, navigate])
+  }, [user])
 
   const handleLogout = async () => {
     await signOut(auth)

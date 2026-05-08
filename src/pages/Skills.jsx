@@ -1,7 +1,14 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
-export default function Skills() {
+export default function Skills({ user }) {
+  const navigate = useNavigate()
+  if (!user) {
+    navigate('/login')
+  }
+
+
   const [Skills, setSkills] = useState(() => {
     const savedSkills = localStorage.getItem("Skills");
 

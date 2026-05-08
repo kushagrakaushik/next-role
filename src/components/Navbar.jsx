@@ -17,9 +17,9 @@ export default function Navbar({user}) {
   const navItems = [
     { name: "Dashboard", path: "/dashboard", icon: LayoutDashboard },
     { name: "Roles", path: "/roles", icon: Briefcase },
-    { name: "My Path", path: "/my-path", icon: Map },
+    // { name: "My Path", path: "/my-path", icon: Map },
     { name: "Skills", path: "/skills",icon: LayersPlus },
-    { name: "Visualizer", path: "/visualizer", icon: BarChart3 },
+    // { name: "Visualizer", path: "/visualizer", icon: BarChart3 },
     { name: "Profile", path: "/profile", icon: User },
   ];
 

@@ -44,11 +44,11 @@ function App() {
           <Route path="/" element={<Landing user={user} />} />
           <Route path="/signup" element={<Signup user={user} />} />
           <Route path="/login" element={<Login user={user} />} />
-          <Route path="/skills" element={<Skills />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/dashboard" element={<Dashboard user={user} groupedJobs={groupedJobs} jobsLoading={jobsLoading} />} />
-          <Route path="/roles" element={<Roles groupedJobs={groupedJobs} jobsLoading={jobsLoading} />} />
-          <Route path="/visualizer" element={<Visualizer />} />
+          <Route path="/skills" user={user} element={<Skills />} />
+          <Route path="/profile" user={user} element={<Profile />} />
+          <Route path="/dashboard" user={user} element={<Dashboard user={user} groupedJobs={groupedJobs} jobsLoading={jobsLoading} />} />
+          <Route path="/roles" user={user} element={<Roles groupedJobs={groupedJobs} jobsLoading={jobsLoading} />} />
+          {/* <Route path="/visualizer" element={<Visualizer />} />  */}
         </Routes>
       </main>
     </div>
